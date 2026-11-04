@@ -1,0 +1,190 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2868
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 BASE DE DATOS - EL RINCON DEL LECTOR (LIBRERIA):\
+\
+\
+NOMBRE DE LA BASE DE DATOS: libreria\
+COTEJAMIENTO: utf8mb4_unicode_ci\
+\
+(El nombre debe ser igual a DB_NAME en config.php)\
+\
+Crear las tablas en este orden:\
+  1. usuarios\
+  2. productos\
+  3. ventas\
+  4. venta_detalle\
+\
+Escribir los nombres en minusculas y tal cual, porque el codigo los usa asi.\
+A_I = auto-incremento.\
+\
+\
+TABLA 1: usuarios\
+\
+\
+Columna     | Tipo      | Longitud          | Nulo | Predeterminado    | Extra\
+------------|-----------|-------------------|------|-------------------|--------------------\
+id          | INT       |                   | No   |                   | Clave primaria, A_I\
+nombre      | VARCHAR   | 100               | No   |                   |\
+correo      | VARCHAR   | 120               | No   |                   | UNIQUE\
+password    | VARCHAR   | 255               | No   |                   |\
+rol         | ENUM      | 'cliente','admin' | No   | cliente           |\
+creado      | TIMESTAMP |                   | No   | CURRENT_TIMESTAMP |\
+\
+Valores: esta tabla se deja VACIA.\
+  - Los clientes se crean desde registro.php\
+  - El administrador se crea abriendo crear_admin.php una sola vez\
+    (luego borrar ese archivo)\
+\
+\
+TABLA 2: productos\
+\
+\
+Columna          | Tipo    | Longitud | Nulo | Predeterminado | Extra\
+-----------------|---------|----------|------|----------------|--------------------\
+id               | INT     |          | No   |                | Clave primaria, A_I\
+titulo           | VARCHAR | 150      | No   |                |\
+autor            | VARCHAR | 120      | No   |                |\
+descripcion      | TEXT    |          | Si   |                |\
+precio           | DECIMAL | 10,2     | No   |                |\
+precio_anterior  | DECIMAL | 10,2     | Si   | NULL           |\
+etiqueta         | VARCHAR | 30       | Si   | NULL           |\
+imagen           | VARCHAR | 150      | Si   | NULL           |\
+stock            | INT     |          | No   | 0              |\
+vendidos         | INT     |          | No   | 0              |\
+\
+VALORES A INSERTAR (6 libros). No llenar el id, se genera solo.\
+precio_anterior y etiqueta se dejan en NULL cuando dice "NULL".\
+\
+--- Libro 1 ---\
+titulo:           Cien a\'f1os de soledad\
+autor:            Gabriel Garc\'eda M\'e1rquez\
+descripcion:      La saga de la familia Buend\'eda y del pueblo de Macondo, obra cumbre del realismo m\'e1gico.\
+precio:           349\
+precio_anterior:  NULL\
+etiqueta:         M\'e1s vendido\
+imagen:           CienAnosDeSoledad.jpeg\
+stock:            20\
+vendidos:         0\
+\
+--- Libro 2 ---\
+titulo:           Pedro P\'e1ramo\
+autor:            Juan Rulfo\
+descripcion:      Juan Preciado llega a Comala buscando a su padre y descubre un pueblo donde los muertos siguen hablando.\
+precio:           189\
+precio_anterior:  NULL\
+etiqueta:         NULL\
+imagen:           PedroParamo.webp\
+stock:            20\
+vendidos:         0\
+\
+--- Libro 3 ---\
+titulo:           Don Quijote de la Mancha\
+autor:            Miguel de Cervantes\
+descripcion:      Un hidalgo que ley\'f3 demasiadas novelas de caballer\'eda sale a deshacer agravios junto a Sancho Panza.\
+precio:           399\
+precio_anterior:  459\
+etiqueta:         Oferta\
+imagen:           DonQuijoteDeLaMancha.jpg\
+stock:            20\
+vendidos:         0\
+\
+--- Libro 4 ---\
+titulo:           El Principito\
+autor:            Antoine de Saint-Exup\'e9ry\
+descripcion:      Un piloto varado en el desierto conoce a un peque\'f1o pr\'edncipe llegado de otro planeta. Para cualquier edad.\
+precio:           159\
+precio_anterior:  199\
+etiqueta:         Oferta\
+imagen:           ElPrincipito.jpg\
+stock:            20\
+vendidos:         0\
+\
+--- Libro 5 ---\
+titulo:           1984\
+autor:            George Orwell\
+descripcion:      Una distop\'eda sobre la vigilancia total y el control del pensamiento bajo la mirada del Gran Hermano.\
+precio:           259\
+precio_anterior:  NULL\
+etiqueta:         NULL\
+imagen:           1984.jpeg\
+stock:            20\
+vendidos:         0\
+\
+--- Libro 6 ---\
+titulo:           Rayuela\
+autor:            Julio Cort\'e1zar\
+descripcion:      Una novela entre Par\'eds y Buenos Aires que puede leerse en m\'e1s de un orden.\
+precio:           329\
+precio_anterior:  NULL\
+etiqueta:         NULL\
+imagen:           Rayuela.webp\
+stock:            20\
+vendidos:         0\
+\
+NOTA SOBRE LA COLUMNA "imagen":\
+  Solo se guarda el NOMBRE del archivo. La imagen debe estar en la carpeta\
+  Img/ del proyecto con ese mismo nombre exacto (sin \'f1 ni espacios).\
+  Etiquetas permitidas: "M\'e1s vendido" u "Oferta" (o NULL).\
+\
+\
+TABLA 3: ventas\
+\
+\
+Columna          | Tipo      | Longitud | Nulo | Predeterminado    | Extra\
+-----------------|-----------|----------|------|-------------------|--------------------\
+id               | INT       |          | No   |                   | Clave primaria, A_I\
+usuario_id       | INT       |          | No   |                   | (id de usuarios)\
+total            | DECIMAL   | 10,2     | No   |                   |\
+paypal_order_id  | VARCHAR   | 40       | No   |                   | UNIQUE\
+telefono         | VARCHAR   | 30       | Si   |                   |\
+direccion        | TEXT      |          | Si   |                   |\
+fecha            | TIMESTAMP |          | No   | CURRENT_TIMESTAMP |\
+\
+Valores: esta tabla se deja VACIA. Se llena sola cuando alguien paga.\
+\
+Relacion (opcional): usuario_id -> usuarios(id)\
+\
+\
+TABLA 4: venta_detalle\
+\
+\
+Columna          | Tipo    | Longitud | Nulo | Predeterminado | Extra\
+-----------------|---------|----------|------|----------------|--------------------\
+id               | INT     |          | No   |                | Clave primaria, A_I\
+venta_id         | INT     |          | No   |                | (id de ventas)\
+producto_id      | INT     |          | No   |                | (id de productos)\
+titulo           | VARCHAR | 150      | No   |                |\
+cantidad         | INT     |          | No   |                |\
+precio_unitario  | DECIMAL | 10,2     | No   |                |\
+\
+Valores: esta tabla se deja VACIA. Se llena sola cuando alguien paga.\
+\
+Relaciones (opcionales):\
+  venta_id    -> ventas(id)\
+  producto_id -> productos(id)\
+\
+\
+VARIABLES DE CONEXION (archivo config.php)\
+\
+\
+DB_HOST = 'localhost'   (con 127.0.0.1 puede dar "Connection refused")\
+DB_PORT = 3308          (o el puerto de tu MySQL; con localhost se ignora)\
+DB_NAME = 'libreria'    (igual al nombre de la base)\
+DB_USER = 'root'\
+DB_PASS = ''            (tu contrase\'f1a de MySQL, vacia si no tienes)\
+\
+\
+ORDEN DE PASOS:\
+\
+\
+1. Crear la base de datos "libreria" en phpMyAdmin.\
+2. Crear las 4 tablas con las columnas de arriba.\
+3. Insertar los 6 libros en la tabla productos.\
+4. Revisar las variables de conexion en config.php.\
+5. Abrir crear_admin.php una sola vez y despues borrarlo.\
+6. Copiar las imagenes a la carpeta Img/.}

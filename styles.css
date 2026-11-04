@@ -1,0 +1,480 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+:root {
+    --blanco: #ffffff;
+    --oscuro: #212121;
+    --primario: #FFC107;
+    --secundario: #0097A7;
+    --secundarioOscuro: #00838F;
+    --gris: #757575;
+    --grisClaro: #DFE9F3;
+    --rojo: #C62828;
+}
+
+/** Globales **/
+html {
+    font-size: 62.5%; /* 1rem = 10px */
+    box-sizing: border-box; /* Hack para Box Model */
+    scroll-behavior: smooth;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    font-size: 1.6rem;
+    font-family: 'Krub', sans-serif;
+    color: var(--oscuro);
+    background-image: linear-gradient(to top, var(--grisClaro) 0%, var(--blanco) 100%);
+}
+.contenedor {
+    width: min(120rem, 95%);
+    margin: 0 auto;
+}
+.contenido-header{
+    width: 100%;
+    margin: 0 auto;
+    background-color: var(--blanco);
+}
+.seccion {
+    margin-bottom: 6rem;
+    scroll-margin-top: 8rem; /* Espacio al llegar con los enlaces del menú */
+}
+.seccion:last-child {
+    margin-bottom: 0;
+}
+
+/** Botón **/
+.boton {
+    display: inline-block;
+    background-color: var(--secundario);
+    color: var(--blanco);
+    padding: 1rem 3rem;
+    margin-top: 3rem;
+    font-family: inherit;
+    font-size: 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: .5rem;
+    width: 90%;
+    text-align: center;
+    border: none;
+    transition: background-color .3s ease;
+}
+@media (min-width: 768px) {
+    .boton {
+        width: auto;
+    }
+}
+.boton:hover {
+    cursor: pointer;
+    background-color: var(--secundarioOscuro);
+}
+
+.sombra {
+    box-shadow: 0px 5px 15px 0px rgba(112, 112, 112, 0.48);
+    background-color: var(--blanco);
+    padding: 3rem 2rem;
+    border-radius: 1rem;
+}
+@media (min-width: 768px) {
+    .sombra {
+        padding: 5rem;
+    }
+}
+
+/** Tipografía **/
+h1 {
+    font-size: 3.8rem;
+}
+h2 {
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+}
+h3 {
+    font-size: 1.8rem;
+}
+h1, h2, h3 {
+    text-align: center;
+}
+
+/** Títulos **/
+.header {
+    padding: 2rem 0;
+}
+.titulo span {
+    font-size: 2rem;
+    color: var(--secundario);
+}
+
+/** Utilidades **/
+.w-sm-100 {
+    width: 100%;
+}
+@media (min-width: 768px) {
+    .w-sm-100 {
+        width: auto;
+    }
+}
+.flex {
+    display: flex;
+}
+.alinear-derecha {
+    justify-content: flex-end;
+}
+
+/** Navegación Principal **/
+.nav-bg {
+    background-color: var(--secundario);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.navegacion-principal {
+    display: flex;
+    flex-direction: column;
+}
+@media (min-width: 768px) {
+    .navegacion-principal {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+.navegacion-principal a {
+    display: block;
+    text-align: center;
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 1rem;
+    transition: background-color .3s ease;
+}
+.navegacion-principal a:hover {
+    background-color: var(--primario);
+    color: var(--oscuro);
+}
+
+/** Hero **/
+.hero {
+    /* Si img/hero.jpg no existe, se ve el degradado */
+    background-image: url(../img/hero.jpg), linear-gradient(135deg, var(--secundario) 0%, var(--oscuro) 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 45rem;
+    position: relative;
+    margin-bottom: 4rem;
+}
+.contenido-hero {
+    position: absolute;
+    background-color: rgb(0 0 0 / 70%);
+    width: 100%;
+    height: 100%;
+    padding: 0 2rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.contenido-hero h2,
+.contenido-hero p {
+    color: var(--blanco);
+}
+.contenido-hero h2 {
+    font-size: 3.2rem;
+    margin-bottom: 2rem;
+}
+.contenido-hero h2 span {
+    display: block;
+    color: var(--primario);
+    font-size: 2rem;
+    margin-top: 1rem;
+}
+.contenido-hero .ubicacion {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+.contenido-hero .ubicacion p {
+    font-size: 1.8rem;
+}
+@media (min-width: 768px) {
+    .contenido-hero h2 {
+        font-size: 4.4rem;
+    }
+}
+
+/** Beneficios **/
+.beneficios {
+    display: grid;
+    gap: 4rem;
+}
+@media (min-width: 768px) {
+    .beneficios {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+}
+.beneficio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.beneficio h3 {
+    color: var(--secundario);
+    font-weight: normal;
+    font-size: 2rem;
+    margin: 2rem 0 1rem;
+}
+.beneficio p {
+    line-height: 1.8;
+}
+.beneficio .iconos {
+    height: 12rem;
+    width: 12rem;
+    background-color: var(--primario);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/** Catálogo **/
+.libros {
+    display: grid;
+    gap: 3rem;
+}
+@media (min-width: 600px) {
+    .libros {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 992px) {
+    .libros {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.libro {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--blanco);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0px 5px 15px 0px rgba(112, 112, 112, 0.3);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+.libro:hover {
+    transform: translateY(-.5rem);
+    box-shadow: 0px 10px 20px 0px rgba(112, 112, 112, 0.45);
+}
+
+/* Etiquetas "Más vendido" / "Oferta" */
+.etiqueta {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 1;
+    background-color: var(--primario);
+    color: var(--oscuro);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+}
+.etiqueta-oferta {
+    background-color: var(--rojo);
+    color: var(--blanco);
+}
+
+/* Espacio para la imagen del libro */
+.libro-imagen {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background-color: var(--grisClaro);
+    outline: 2px dashed #B0BEC5;
+    outline-offset: -1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+/* Icono y texto que se ven mientras no haya imagen */
+.libro-imagen::before {
+    content: '';
+    width: 5rem;
+    height: 5rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23757575' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='4' width='16' height='16' rx='3'/%3E%3Cpath d='M15 8h.01M4 15l4-4a3 5 0 0 1 3 0l5 5M14 14l1-1a3 5 0 0 1 3 0l2 2'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.libro-imagen::after {
+    content: 'Agrega tu imagen';
+    color: var(--gris);
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+/* Cuando agregas el <img>, se quita el aviso */
+.libro-imagen:has(img) {
+    outline: none;
+}
+.libro-imagen:has(img)::before,
+.libro-imagen:has(img)::after {
+    display: none;
+}
+.libro-imagen img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Cambia a 'cover' para que la imagen llene todo el espacio (recorta los bordes) */
+}
+
+/* Información del libro */
+.libro-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+.libro-info h3 {
+    text-align: left;
+    font-size: 2rem;
+}
+.libro-autor {
+    color: var(--secundario);
+    font-weight: 700;
+    margin: .5rem 0 1rem;
+}
+.libro-descripcion {
+    flex: 1; /* Empuja el precio hasta abajo para que todas las tarjetas queden alineadas */
+    color: var(--gris);
+    line-height: 1.6;
+}
+.libro-compra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+.precio {
+    font-size: 2.6rem;
+    font-weight: 700;
+}
+.precio del {
+    font-size: 1.6rem;
+    font-weight: normal;
+    color: var(--gris);
+    margin-left: .5rem;
+}
+.libro-compra .boton {
+    width: auto;
+    margin-top: 0;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+}
+
+/** Pedido **/
+.formulario {
+    background-color: var(--oscuro);
+    width: min(70rem, 100%); /* Utilizar el valor más pequeño */
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+@media (min-width: 768px) {
+    .formulario {
+        padding: 4rem;
+    }
+}
+.formulario fieldset {
+    border: none;
+}
+.formulario legend {
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--primario);
+}
+
+@media (min-width: 768px) {
+    .contenedor-campos {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+    }
+    .campo-completo {
+        grid-column: 1 / 3;
+    }
+}
+.campo {
+    margin-bottom: 2rem;
+}
+.campo label {
+    color: var(--blanco);
+    font-weight: bold;
+    margin-bottom: .5rem;
+    display: block;
+}
+.campo textarea {
+    height: 15rem;
+    resize: vertical;
+}
+
+.input-text {
+    width: 100%;
+    border: none;
+    padding: 1.5rem;
+    border-radius: .5rem;
+    font-family: inherit;
+    font-size: 1.6rem;
+    background-color: var(--blanco);
+}
+.input-text:focus {
+    outline: 3px solid var(--primario);
+}
+
+/** Footer **/
+.footer {
+    text-align: center;
+    background-color: var(--secundario);
+    color: var(--blanco);
+    padding: 3rem 2rem;
+    margin-top: 6rem;
+}
+
+/** ===== Tienda: mensajes, tablas, carrito y admin ===== **/
+.alerta { padding: 1.5rem 2rem; border-radius: .5rem; margin-bottom: 2rem; font-weight: 700; text-align: center; }
+.alerta-ok { background: #E8F5E9; color: #2E7D32; }
+.alerta-err { background: #FFEBEE; color: var(--rojo); }
+
+.tabla-scroll { overflow-x: auto; margin-bottom: 3rem; }
+.tabla { width: 100%; border-collapse: collapse; font-size: 1.5rem; }
+.tabla th, .tabla td { padding: 1rem 1.2rem; text-align: left; border-bottom: 1px solid var(--grisClaro); vertical-align: middle; }
+.tabla th { background: var(--secundario); color: var(--blanco); }
+.tabla .num { text-align: right; }
+.tabla img { width: 5rem; height: 6.5rem; object-fit: contain; }
+.total { text-align: right; font-size: 2.4rem; font-weight: 700; margin: 2rem 0; }
+
+.boton-chico { width: auto; margin-top: 0; padding: .7rem 1.4rem; font-size: 1.3rem; }
+.boton-peligro { background-color: var(--rojo); }
+.boton-peligro:hover { background-color: #8E0000; }
+
+.stock { font-size: 1.4rem; color: var(--gris); margin-top: 1rem; }
+.bajo { color: var(--rojo); font-weight: 700; }
+.agotado { color: var(--rojo); font-weight: 700; text-transform: uppercase; }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+.stat { background: var(--grisClaro); border-radius: 1rem; padding: 2rem; text-align: center; font-weight: 700; }
+.stat span { display: block; font-size: 3rem; color: var(--secundario); }
